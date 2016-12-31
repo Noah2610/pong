@@ -27,11 +27,12 @@ function setup() {
 	// get players
 	socket.on("addPlayer", (playerCount) => {
 		if (players.length == 0) {
-			pIndex = playerCount;
+			pIndex = playerCount - 1;
 		}
 		// players = [];
-		for (let count = players.length; count <= playerCount; count++) {
-			if (count >= 1) break;
+		for (let count = players.length; count < playerCount; count++) {
+			// if (count >= 1) break;
+			console.log(count);
 			players.push(new Player(count));
 		}
 		if (players.length == 2) {

@@ -13,7 +13,7 @@ console.log(chalk.green("server running on port " + port));
 
 const io = socket(server);
 
-var userCount = 0;
+let userCount = 0;
 
 // new connection
 io.sockets.on("connection", (socket) => {
@@ -27,8 +27,9 @@ io.sockets.on("connection", (socket) => {
 
 	// add connection to server var
 	socket.on("addUser", () => {
-		io.sockets.emit("addPlayer", userCount);
 		userCount++;
+		console.log(chalk.blue("user count: " + userCount));
+		io.sockets.emit("addPlayer", userCount);
 	});
 
 
@@ -50,7 +51,10 @@ io.sockets.on("connection", (socket) => {
 		// log disconnect
 		console.log(chalk.red(chalk.underline(curDate("H:M:S")) + " - disconnected: " + chalk.bold(socket.id + " - " + ip)));
 		// remove from userCount
-		userCount--;
+		if (userCount > 0) {
+			userCount--;
+		}
+		console.log(chalk.blue("user count: " + userCount));
 	});
 
 });

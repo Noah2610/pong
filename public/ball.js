@@ -1,6 +1,6 @@
 
 
-function Ball(bIndex, x=cnv.width/2, y=cnv.height/2, mv=[8,-2]) {
+function Ball(bIndex=0, x=cnv.width/2, y=cnv.height/2, mv=[8,-2]) {
 	this.x = x;
 	this.y = y;
 	this.mv = mv;
